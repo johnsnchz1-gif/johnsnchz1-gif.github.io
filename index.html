@@ -256,6 +256,132 @@ p{
     color:white;
     text-decoration:underline;
 }
+
+@media (max-width: 768px) {
+    .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .logo img {
+        height: 120px;
+    }
+
+    .logo {
+        order: 1;
+        align-self: center;
+    }
+
+    .nav-links {
+        order: 2;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        margin: 0;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        order: 3;
+        align-self: center;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .page {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .home-title-container {
+        height: 50vh;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .card {
+        padding: 20px;
+        margin: 10px 0;
+        text-align: justify;
+    }
+
+    .card-body {
+        text-align: justify;
+    }
+
+    .card-body ul {
+        margin: 15px 0;
+        padding-left: 20px;
+        text-align: left;
+    }
+
+    ul.card-body {
+        margin: 15px 0;
+        padding-left: 20px;
+        text-align: left;
+    }
+
+    .home-columns {
+        width: 95%;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .cause-effect-bottom {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .cause-effect-bottom .card {
+        min-width: unset;
+    }
+
+    .tips-grid, .tech-grid {
+        gap: 10px;
+    }
+
+    .tips-grid .mini-col, .tech-grid .mini-col {
+        padding: 15px;
+        text-align: justify;
+    }
+
+    .reminder-columns {
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .contact-title-container {
+        margin-bottom: 20px;
+    }
+
+    .contact-title-container h1 {
+        font-size: 1.5em;
+    }
+
+    .contact-title-container p {
+        font-size: 0.9em;
+    }
+
+    .contact-columns {
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .contact-columns .card {
+        padding: 20px;
+    }
+}
 </style>
 </head>
 
@@ -286,7 +412,7 @@ p{
 <div id="home" class="page active">
     <div class="home-title-container">
         <h1>Your <span>Path to Wellness</span></h1>
-        <p>Welcome to your homepage</p>
+        <p>Welcome to your wellness journey!</p>
     </div>
 
     <div class="home-columns">
