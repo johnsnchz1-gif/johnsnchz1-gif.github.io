@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellness SPA</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&family=Playfair+Display&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Poppins, sans-serif;
+    color:white;
+    overflow-x:hidden;
+}
+
+video{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-2;
+}
+
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:-1;
+}
+
+.nav{
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    padding:20px;
+    color:white;
+    align-items:center;
+}
+
+.logo img{
+    height:95px;
+    width:auto;
+    cursor:pointer;
+}
+
+.nav-links{
+    justify-self:center;
+}
+
+.nav-links a{
+    margin:0 10px;
+    cursor:pointer;
+    color:white;
+    text-decoration:none;
+    padding:6px 12px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.nav-links a.active{
+    background:rgba(255,255,255,0.2);
+    backdrop-filter:blur(5px);
+}
+
+.nav-links a:hover{
+    background:rgba(255,255,255,0.1);
+}
+
+.btn{
+    justify-self:end;
+    background:white;
+    color:black;
+    padding:8px 16px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn.active{
+    background:rgba(255,255,255,0.2);
+    color:white;
+    backdrop-filter:blur(5px);
+}
+
+.page{
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    width:100%;
+    padding:50px 20px;
+}
+
+.page.active{
+    display:flex;
+}
+
+.card{
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    padding:40px;
+    border-radius:20px;
+    max-width:700px;
+    width:95%;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    margin:20px 0;
+}
+
+h1{
+    font-size:40px;
+}
+
+span{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+}
+
+p{
+    margin-top:15px;
+}
+
+.home-title-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:80vh;
+    text-align:center;
+}
+
+.home-columns{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:25px;
+    width:90%;
+    max-width:700px;
+    margin-bottom:50px;
+}
+
+.card-highlight{
+    font-size:22px;
+    font-weight:700;
+    margin-bottom:10px;
+    color:white;
+    text-align:center;
+}
+
+.card-body{
+    font-size:16px;
+    line-height:1.6;
+    color:white;
+    text-align:left;
+}
+
+.cause-effect-bottom{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.cause-effect-bottom .card{
+    flex:1;
+    min-width:300px;
+}
+
+.tips-grid, .tech-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+    margin-top:20px;
+    width:100%;
+    max-width:700px;
+}
+
+.tips-grid .mini-col, .tech-grid .mini-col{
+    background:rgba(0,0,0,0.5);
+    padding:20px;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.3s;
+    text-align:center;
+}
+
+.tips-grid .mini-col:hover, .tech-grid .mini-col:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+.reminder-columns{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    margin-top:20px;
+}
+
+.contact-title-container{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.contact-title-container h1{
+    font-size:2em;
+    font-weight:700;
+    color:white;
+}
+
+.contact-title-container p{
+    font-size:1em;
+    color:white;
+    margin-top:10px;
+    max-width:800px;
+}
+
+.contact-columns{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    margin-top:20px;
+}
+
+.contact-columns .card{
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    max-width:700px;
+    width:95%;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    color:white;
+    text-align:left;
+}
+
+.contact-columns .card h2{
+    margin-bottom:10px;
+}
+
+.contact-columns .card a{
+    color:white;
+    text-decoration:underline;
+}
+</style>
+</head>
+
+<body>
+
+<video autoplay muted loop playsinline>
+    <source src="https://www.pexels.com/download/video/27052119/" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="nav">
+    <div class="logo" data-page="home">
+        <img src="logo-removebg-preview.png" alt="Wellness Spa Logo">
+    </div>
+
+    <div class="nav-links">
+        <a data-page="home" class="active">Home</a>
+        <a data-page="shop">Cause & Effect</a>
+        <a data-page="blog">Tips</a>
+        <a data-page="techniques">Techniques</a>
+        <a data-page="resources">Reminder</a>
+    </div>
+
+    <div class="btn" data-page="contact">Let's Talk</div>
+</div>
+
+<div id="home" class="page active">
+    <div class="home-title-container">
+        <h1>Your <span>Path to Wellness</span></h1>
+        <p>Welcome to your homepage</p>
+    </div>
+
+    <div class="home-columns">
+        <div class="card">
+            <div class="card-highlight">Taking care of your mental health doesn’t always begin with big, life-changing decisions — it often starts with the small, everyday choices you make.</div>
+            <div class="card-body">
+                Research shows that healthy lifestyle practices play an important role in promoting mental health and overall well-being, and can even help prevent or manage mental health conditions. These habits support how the brain functions, how we process emotions, and how we respond to everyday challenges. More importantly, they are flexible and personal, meaning you can build them in ways that fit your own routine and preferences, focusing on progress rather than perfection.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-highlight">These healthy lifestyle practices include:</div>
+            <div class="card-body">
+                <ul>
+                    <li>Exercise – Regular physical activity helps boost mood, reduce stress, and increase energy by releasing natural chemicals in the brain that promote a sense of well-being.</li>
+                    <li>Balanced Diet – Eating nutritious and well-balanced meals supports brain function, improves focus, and helps maintain stable energy and mood throughout the day.</li>
+                    <li>Proper Sleep – Getting enough quality sleep allows the mind to rest, process emotions, and restore mental energy, leading to better emotional control and clearer thinking.</li>
+                    <li>Mind-Body and Mindfulness Practices – Activities such as meditation, deep breathing, or yoga help reduce anxiety, improve self-awareness, and keep you grounded in the present moment.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-highlight">These practices are not meant to be followed to perfection, but rather about building a stable progress.</div>
+            <div class="card-body">
+                You don't have to do everything all at one. Each step, no matter how small or big, contributes to your overall well-being. What works for one person may be different for another, and that is completely fine. You can explore, adjust, and build habits that fit your lifestyle and needs over time. In the end, your mental health is a continuous process of choosing what helps you feel better and more like yourself each day.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="shop" class="page">
+    <div class="card">
+        <div class="card-highlight">Mental Health is the state of mental well-being of a person. It includes our emotional, psychological, and social well being that affects how individuals think, feel, and act as we live our lives.</div>
+        <div class="card-body" style="text-align:center;">Cause and Effects Includes:</div>
+    </div>
+    <div class="cause-effect-bottom">
+        <div class="card">
+            <div class="card-highlight">Causes:</div>
+            <ul class="card-body">
+                <li>Biological factors, such as genes or brain chemistry</li>
+                <li>Life experiences, such as trauma or abuse</li>
+                <li>Family history of mental health problems</li>
+                <li>Your lifestyle, such as diet, physical activity, and substance use</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-highlight">Effects:</div>
+            <ul class="card-body">
+                <li>A change in your eating or sleeping habits</li>
+                <li>Withdrawing from the people and activities you enjoy</li>
+                <li>Having low or no energy</li>
+                <li>Feeling numb or like nothing matters</li>
+                <li>Having unexplained aches and pains</li>
+                <li>Feeling helpless or hopeless</li>
+                <li>Smoking, drinking, or using drugs more than usual</li>
+                <li>Feeling unusually confused, forgetful, angry, upset, worried, or scared</li>
+                <li>Having severe mood swings that cause problems in your relationships</li>
+                <li>Having thoughts and memories that you can't get out of your head</li>
+                <li>Hearing voices or believing things that are not true</li>
+                <li>Thinking of harming yourself or others</li>
+                <li>Not being able to perform daily tasks like taking care of your kids or getting to work or school</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="blog" class="page">
+    <div class="card">
+        <h1>Daily Life Tips</h1>
+        <p>Follow for more!</p>
+    </div>
+    <div class="tips-grid">
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmdWsH/','_blank')">Meditate</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAasjL4/','_blank')">Read books</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmYrBb/','_blank')">Food</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmme2S/','_blank')">Exercise</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmme2S/','_blank')">Water</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmCRad/','_blank')">Sleep</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmxC2Q/','_blank')">Limit screen time/ new hobbies</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmGSfG/','_blank')">Gratitude</div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHAmVwhx/','_blank')">Calming place</div>
+    </div>
+</div>
+
+<div id="techniques" class="page">
+    <div class="card">
+        <h1>Techniques</h1>
+        <p>Please click the designated column to watch a tutorial video for each!</p>
+    </div>
+    <div class="tech-grid">
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHSnrtnF/','_blank')">
+            <b>Balloon Breathing</b><br>
+            This quick calming exercise involves breathing in slowly through your nose, holding briefly, and then exhaling through your mouth. Imagine your belly inflating like a balloon as you inhale, then gently deflating as you exhale. Repeating this cycle about five times can help reduce stress and promote relaxation.
+        </div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHSnHkS6/','_blank')">
+            <b>Box Breathing</b><br>
+            This breathing technique involves inhaling for four seconds, holding the breath for four seconds, exhaling for four seconds, and holding again for four seconds before repeating.
+        </div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHSnQkk7/','_blank')">
+            <b>Alternate Nostril Breathing</b><br>
+            This technique involves one finger gently closing one nostril while inhaling through the other, then switching sides for the exhale. For example, close the right nostril and inhale through the left for four seconds, then close the left nostril and exhale through the right.
+        </div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHSn3kMs/','_blank')">
+            <b>Rainbow Breathing</b><br>
+            This creative exercise combines visualization and breathing. Imagine a rainbow in front of you, and as you trace each color with your finger, take a deep breath in. As you trace back down, slowly breathe out. Repeating this for each color helps relax both the mind and body.
+        </div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHSnWsEE/','_blank')">
+            <b>Body Scan Relaxation</b><br>
+            This mindfulness practice involves slowly focusing your attention on different parts of your body, starting from your toes and moving upward to your head. As you breathe, notice any tension in each area and consciously release it.
+        </div>
+        <div class="mini-col" onclick="window.open('https://vt.tiktok.com/ZSHSWh7qb/','_blank')">
+            <b>Body Tapping</b><br>
+            To do this technique, gently tap areas like the outside of your eyebrow closest to your nose or the corner of your collarbone with your fingertips while taking deep breaths. This method is based on Chinse acupressure and is a good way to calm down by centering yourself back in your body.
+        </div>
+    </div>
+</div>
+
+<div id="resources" class="page">
+    <div class="home-title-container">
+        <h1>Be honest. Do you prioritize your mental health?</h1>
+    </div>
+    <div class="reminder-columns">
+        <div class="card">
+            You know that taking care of your mental health is one of the most rewarding journeys you can begin with. Why? because it starts with recognizing that your well-being is your top priority. You don't have to be perfect to be worthy of peace. You don’t have to be fixed to be worth loving. You don’t need to be extravagant every day to fit in. You don’t need to wear your smile everyday knowing that you’re hiding your pain and heavy heart. You don’t need to do this for everyone. Be true to yourself. Love yourself. Do everything for yourself, not for anyone. Every tiny step creates progress that can take you toward a healthier lifestyle that brings you closer to your best self. Please remember that you never have to carry your burdens alone, there are so many people who love you and care about you… and most importantly… you have yourself. To love you, to take care of you, to support you, and to build
+youself…again.
+        </div>
+        <div class="card">
+            It’s okay to try again. It’s okay to show that you’re struggling. It’s okay to restart. It’s okay to reach out. You know that reaching out for support is a profound sign of strength that opens the door to healing and connection. But you can’t do all of this if you choose to be the same person who let themselves suffer. Get up and HELP yourself . Here, a gentle reminder for you: Slow progress is not a failure so it is ok to slow down, your tears are not a sign of your weaknesses so it is ok to cry, Letting go is not giving up, and lastly… Don’t be hard on yourself.
+        </div>
+        <div class="card">
+            Because at the end of the day, it’s only you. By choosing to prioritize your mental and physical health, you aren't just surviving; you are creating a life where you can truly thrive and inspire others to do the same. START LIVING, NOT SURVIVING. I hope you can find healing from the things that you don’t talk about, DON’T GIVE UP EASILY. Everything will be OK in the end, So if it’s not OK, then it’s not the end. I’m really proud of you. Love yourself 🙂
+        </div>
+    </div>
+</div>
+
+<div id="contact" class="page">
+    <div class="contact-title-container">
+        <h1>Need someone to talk to?</h1>
+        <p>𝖨𝖿 you 𝗇𝖾𝖾𝖽 𝗌𝗈𝗆𝖾𝗈𝗇𝖾 𝗍𝗈 𝗍𝖺𝗅𝗄 𝗍𝗈, 𝖽𝗈𝗇’𝗍 𝗁𝖾𝗌𝗂𝗍𝖺𝗍𝖾 𝗍𝗈 𝗋𝖾𝖺𝖼𝗁 𝗈𝗎𝗍 𝗍𝗈 𝗍𝗁𝖾𝗌𝖾 𝗍𝗋𝗎𝗌𝗍𝖾𝖽 𝗁𝗈𝗍𝗅𝗂𝗇𝖾𝗌 𝖺𝗇𝖽 𝖼𝗂𝗍𝖾𝗌 𝗍𝗁𝖺𝗍 𝖺𝗋𝖾 𝗈𝗉𝖾𝗇 24/7. 𝖱𝖾𝗆𝖾𝗆𝖻𝖾𝗋, 𝗒𝗈𝗎𝗋 𝗐𝖾𝗅𝗅-𝖻𝖾𝗂𝗇𝗀 𝗆𝖺𝗍𝗍𝖾𝗋𝗌.</p>
+    </div>
+
+    <div class="contact-columns">
+        <div class="card">
+            <h2>𝖧𝖮𝖯𝖤𝖫𝖨𝖭𝖤</h2>
+            <p>📞(02) 8804-4673<br>
+            🌐<a href="https://www.facebook.com/share/12DG7u8Vcyo" target="_blank" style="color:white; text-decoration:underline;">Facebook Page</a></p>
+        </div>
+        <div class="card">
+            <h2>𝖨𝗇 𝖳𝗈𝗎𝖼𝗁: 𝖢𝗋𝗂𝗌𝗂𝗌 𝖫𝗂𝗇𝖾</h2>
+            <p>📞+63 2 8893 7603<br>
+            🌐<a href="https://in-touch.org" target="_blank" style="color:white; text-decoration:underline;">Website</a></p>
+        </div>
+        <div class="card">
+            <h2>𝖳𝖺𝗐𝖺𝗀 𝖯𝖺𝗀𝗅𝖺𝗎𝗆 - 𝖢𝖾𝗇𝗍𝗋𝗈 𝖡𝗂𝗌𝖺𝗒𝖺</h2>
+            <p>📞1800-1888-1553<br>
+            🌐<a href="https://www.facebook.com/share/1KCJZscMEW/" target="_blank" style="color:white; text-decoration:underline;">Facebook Page</a></p>
+        </div>
+        <div class="card">
+            <h2>𝖭𝖢𝖬𝖧 𝖢𝗋𝗂𝗌𝗂𝗌 𝖧𝗈𝗍𝗅𝗂𝗇𝖾</h2>
+            <p>📞0966-467-9626<br>
+            🌐<a href="https://www.facebook.com/share/17kZtXhGBL" target="_blank" style="color:white; text-decoration:underline;">Facebook Page</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+const links = document.querySelectorAll("[data-page]");
+const pages = document.querySelectorAll(".page");
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+        const target = link.getAttribute("data-page");
+
+        pages.forEach(page => page.classList.remove("active"));
+        document.getElementById(target).classList.add("active");
+
+        links.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
+    });
+});
+</script>
+
+</body>
+</html>
